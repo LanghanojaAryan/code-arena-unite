@@ -20,23 +20,12 @@ import {
   Star
 } from "lucide-react";
 
-interface Problem {
-  id: string;
-  title: string;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  category: string;
-  solved: boolean;
-  likes: number;
-  acceptance: number;
-  tags: string[];
-}
-
 export function ProblemList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
 
-  const problems: Problem[] = [
+  const problems = [
     {
       id: "1",
       title: "Two Sum",
@@ -108,7 +97,7 @@ export function ProblemList() {
     return matchesSearch && matchesDifficulty && matchesCategory;
   });
 
-  const getDifficultyColor = (difficulty: string) => {
+  const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
       case 'Easy': return 'success';
       case 'Medium': return 'warning';
@@ -192,7 +181,7 @@ export function ProblemList() {
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-medium truncate">{problem.title}</h3>
                       <Badge 
-                        variant={getDifficultyColor(problem.difficulty) as any}
+                        variant={getDifficultyColor(problem.difficulty)}
                         className="text-xs"
                       >
                         {problem.difficulty}
