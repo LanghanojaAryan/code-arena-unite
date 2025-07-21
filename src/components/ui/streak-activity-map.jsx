@@ -1,27 +1,45 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Flame } from "lucide-react";
 
-// Generate activity data for the past year (simplified)
+// Generate activity data organized by weeks
 const generateActivityData = () => {
-  const data = [];
+  const weeks = [];
   const today = new Date();
   
-  // Go back 365 days
-  for (let i = 364; i >= 0; i--) {
-    const date = new Date(today);
-    date.setDate(date.getDate() - i);
+  // Start from Sunday of the week that was 52 weeks ago
+  const startDate = new Date(today);
+  startDate.setDate(today.getDate() - (today.getDay() + 364));
+  
+  // Generate 53 weeks of data
+  for (let week = 0; week < 53; week++) {
+    const weekData = [];
     
-    // Random activity level (0-4)
-    const level = Math.random() > 0.3 ? Math.floor(Math.random() * 5) : 0;
+    // Generate 7 days for each week (Sunday to Saturday)
+    for (let day = 0; day < 7; day++) {
+      const date = new Date(startDate);
+      date.setDate(startDate.getDate() + (week * 7) + day);
+      
+      // Skip if date is in the future
+      if (date > today) {
+        weekData.push(null);
+        continue;
+      }
+      
+      // Random activity level (0-4)
+      const level = Math.random() > 0.3 ? Math.floor(Math.random() * 5) : 0;
+      
+      weekData.push({
+        date: date.toISOString().split('T')[0],
+        level,
+        problems: level * Math.floor(Math.random() * 3) + level,
+        dayOfWeek: day
+      });
+    }
     
-    data.push({
-      date: date.toISOString().split('T')[0],
-      level,
-      problems: level * Math.floor(Math.random() * 3) + level
-    });
+    weeks.push(weekData);
   }
   
-  return data;
+  return weeks;
 };
 
 const activityData = generateActivityData();
@@ -46,15 +64,15 @@ const formatDate = (dateStr) => {
 };
 
 export function StreakActivityMap() {
-  // Group data by weeks for display
-  const weeks = [];
-  for (let i = 0; i < activityData.length; i += 7) {
-    weeks.push(activityData.slice(i, i + 7));
-  }
-
+  const weeks = generateActivityData();
+  
+  // Calculate stats from the flattened data
+  const allDays = weeks.flat().filter(day => day !== null);
   const currentStreak = 47;
   const longestStreak = 89;
-  const totalContributions = activityData.filter(d => d.level > 0).length;
+  const totalContributions = allDays.filter(d => d.level > 0).length;
+
+  const dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   return (
     <Card className="glass backdrop-blur-sm">
@@ -83,15 +101,38 @@ export function StreakActivityMap() {
           </div>
 
           {/* Activity Map */}
-          <div className="space-y-2">            
-            <div className="grid grid-cols-53 gap-[2px] justify-center">
-              {activityData.map((day, index) => (
-                <div
-                  key={index}
-                  className={`w-[10px] h-[10px] rounded-sm ${getIntensityClass(day.level)} hover:scale-110 transition-all duration-200 cursor-pointer border border-border/20`}
-                  title={`${formatDate(day.date)}: ${day.problems} problems solved`}
-                />
-              ))}
+          <div className="space-y-2">
+            <div className="flex gap-[2px]">
+              {/* Day labels */}
+              <div className="flex flex-col gap-[2px] mr-2">
+                <div className="w-[10px] h-[10px]"></div> {/* Spacer for alignment */}
+                {dayLabels.map((day, index) => (
+                  <div 
+                    key={index} 
+                    className="w-[10px] h-[10px] flex items-center justify-center text-xs text-muted-foreground"
+                    style={{ fontSize: '8px' }}
+                  >
+                    {index % 2 === 1 ? day : ''}
+                  </div>
+                ))}
+              </div>
+              
+              {/* Activity grid */}
+              <div className="flex gap-[2px]">
+                {weeks.map((week, weekIndex) => (
+                  <div key={weekIndex} className="flex flex-col gap-[2px]">
+                    {week.map((day, dayIndex) => (
+                      <div
+                        key={`${weekIndex}-${dayIndex}`}
+                        className={`w-[10px] h-[10px] rounded-sm ${
+                          day ? getIntensityClass(day.level) : 'bg-transparent'
+                        } hover:scale-110 transition-all duration-200 cursor-pointer border border-border/20`}
+                        title={day ? `${formatDate(day.date)}: ${day.problems} problems solved` : ''}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Legend */}
