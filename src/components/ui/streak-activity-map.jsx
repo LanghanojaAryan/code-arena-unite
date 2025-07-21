@@ -28,13 +28,13 @@ const activityData = generateActivityData();
 
 const getIntensityClass = (level) => {
   const intensities = {
-    0: 'bg-muted',
-    1: 'bg-success/20',
-    2: 'bg-success/40', 
-    3: 'bg-success/70',
+    0: 'bg-muted/30',
+    1: 'bg-success/30',
+    2: 'bg-success/50', 
+    3: 'bg-success/80',
     4: 'bg-success'
   };
-  return intensities[level] || 'bg-muted';
+  return intensities[level] || 'bg-muted/30';
 };
 
 const formatDate = (dateStr) => {
@@ -83,30 +83,31 @@ export function StreakActivityMap() {
           </div>
 
           {/* Activity Map */}
-          <div className="space-y-1">
-            <div className="flex justify-between text-xs text-muted-foreground mb-2">
-              <span>Less</span>
-              <span>More</span>
-            </div>
-            
-            <div className="grid grid-cols-53 gap-1 max-w-full overflow-hidden">
+          <div className="space-y-2">            
+            <div className="grid grid-cols-53 gap-[2px] justify-center">
               {activityData.map((day, index) => (
                 <div
                   key={index}
-                  className={`w-2 h-2 rounded-sm ${getIntensityClass(day.level)} hover:scale-110 transition-transform cursor-pointer`}
+                  className={`w-[10px] h-[10px] rounded-sm ${getIntensityClass(day.level)} hover:scale-110 transition-all duration-200 cursor-pointer border border-border/20`}
                   title={`${formatDate(day.date)}: ${day.problems} problems solved`}
                 />
               ))}
             </div>
 
             {/* Legend */}
-            <div className="flex items-center justify-center gap-1 mt-2">
-              {[0, 1, 2, 3, 4].map(level => (
-                <div
-                  key={level}
-                  className={`w-2 h-2 rounded-sm ${getIntensityClass(level)}`}
-                />
-              ))}
+            <div className="flex items-center justify-between mt-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <span>Less</span>
+                <div className="flex items-center gap-1">
+                  {[0, 1, 2, 3, 4].map(level => (
+                    <div
+                      key={level}
+                      className={`w-[10px] h-[10px] rounded-sm ${getIntensityClass(level)} border border-border/20`}
+                    />
+                  ))}
+                </div>
+                <span>More</span>
+              </div>
             </div>
           </div>
         </div>
