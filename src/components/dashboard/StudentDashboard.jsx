@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { ProblemProgressCard } from "@/components/ui/problem-progress-card";
 import {
   Trophy,
   Code,
@@ -10,7 +11,9 @@ import {
   TrendingUp,
   Target,
   Calendar,
-  Award
+  Award,
+  Zap,
+  Brain
 } from "lucide-react";
 
 export function StudentDashboard() {
@@ -27,89 +30,68 @@ export function StudentDashboard() {
 
   return (
     <div className="space-y-6">
+      {/* Progress Overview - Professional Circular Progress */}
+      <ProblemProgressCard 
+        solved={510}
+        total={3625}
+        attempting={8}
+        difficulties={{
+          easy: { solved: 162, total: 886 },
+          medium: { solved: 287, total: 1884 },
+          hard: { solved: 61, total: 855 }
+        }}
+      />
+
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
+        <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Problems Solved</CardTitle>
-            <Code className="h-4 w-4 text-muted-foreground" />
+            <Code className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">47</div>
-            <p className="text-xs text-muted-foreground">+3 from last week</p>
+            <div className="text-2xl font-bold text-primary">510</div>
+            <p className="text-xs text-muted-foreground">+23 from last week</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-success/5 to-success/10 border-success/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Acceptance Rate</CardTitle>
-            <Target className="h-4 w-4 text-muted-foreground" />
+            <Target className="h-4 w-4 text-success" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">73%</div>
-            <p className="text-xs text-muted-foreground">+2% from last month</p>
+            <div className="text-2xl font-bold text-success">73.2%</div>
+            <p className="text-xs text-muted-foreground">+2.1% from last month</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-warning/5 to-warning/10 border-warning/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Contest Ranking</CardTitle>
-            <Trophy className="h-4 w-4 text-muted-foreground" />
+            <Trophy className="h-4 w-4 text-warning" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">#23</div>
-            <p className="text-xs text-muted-foreground">Top 15%</p>
+            <div className="text-2xl font-bold text-warning">#1,247</div>
+            <p className="text-xs text-muted-foreground">Top 15% globally</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-gradient-to-br from-accent/5 to-accent/10 border-accent/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Streak</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Current Streak</CardTitle>
+            <Zap className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12 days</div>
-            <p className="text-xs text-muted-foreground">Keep it up!</p>
+            <div className="text-2xl font-bold text-accent">47 days</div>
+            <p className="text-xs text-muted-foreground">Personal best!</p>
           </CardContent>
         </Card>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Progress Overview */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Award className="h-5 w-5" />
-              Progress Overview
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <div className="flex justify-between mb-2">
-                <span className="text-sm">Easy Problems</span>
-                <span className="text-sm font-medium">32/50</span>
-              </div>
-              <Progress value={64} className="h-2" />
-            </div>
-            <div>
-              <div className="flex justify-between mb-2">
-                <span className="text-sm">Medium Problems</span>
-                <span className="text-sm font-medium">12/75</span>
-              </div>
-              <Progress value={16} className="h-2" />
-            </div>
-            <div>
-              <div className="flex justify-between mb-2">
-                <span className="text-sm">Hard Problems</span>
-                <span className="text-sm font-medium">3/25</span>
-              </div>
-              <Progress value={12} className="h-2" />
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Recent Activity */}
-        <Card>
+        <Card className="glass backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="h-5 w-5" />
@@ -143,6 +125,45 @@ export function StudentDashboard() {
             </div>
             <Button variant="outline" className="w-full mt-3">
               View All Submissions
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Skills Progress */}
+        <Card className="glass backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Brain className="h-5 w-5" />
+              Skills Progress
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                { skill: "Dynamic Programming", progress: 78, problems: 45 },
+                { skill: "Graphs & Trees", progress: 62, problems: 38 },
+                { skill: "Array & Strings", progress: 89, problems: 67 },
+                { skill: "Binary Search", progress: 54, problems: 23 }
+              ].map((skill, index) => (
+                <div key={index} className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium text-sm">{skill.skill}</span>
+                    <span className="text-xs text-muted-foreground">{skill.problems} solved</span>
+                  </div>
+                  <div className="w-full bg-muted rounded-full h-2">
+                    <div 
+                      className="h-2 bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500"
+                      style={{ width: `${skill.progress}%` }}
+                    />
+                  </div>
+                  <div className="text-xs text-muted-foreground text-right">
+                    {skill.progress}%
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Button variant="outline" className="w-full mt-4">
+              View Detailed Analysis
             </Button>
           </CardContent>
         </Card>
