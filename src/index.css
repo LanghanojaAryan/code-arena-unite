@@ -2,62 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Competitive Programming Platform Design System 
-Inspired by LeetCode with coding-focused color palette
-All colors MUST be HSL.
+/* CodeArena - Eye-catching Design System with Poppins Font
+Modern gradient-based competitive programming platform
+All colors MUST be HSL format.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 222 47% 11%;
+    /* Base colors - Clean and modern */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    /* Coding Platform Primary - Deep Blue */
-    --primary: 213 94% 68%;
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 213 94% 60%;
+    /* Primary - Electric Purple/Blue gradient */
+    --primary: 259 94% 51%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 259 94% 45%;
+    --primary-light: 259 94% 91%;
 
-    /* Success - Green (Accepted) */
+    /* Secondary - Deep purple */
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Success - Vibrant Green */
     --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
+    --success-foreground: 0 0% 98%;
     --success-light: 142 76% 95%;
 
-    /* Warning - Orange (Medium) */
-    --warning: 25 95% 53%;
-    --warning-foreground: 0 0% 100%;
-    --warning-light: 25 95% 95%;
+    /* Warning - Electric Orange */
+    --warning: 32 95% 44%;
+    --warning-foreground: 0 0% 98%;
+    --warning-light: 32 95% 95%;
 
-    /* Danger - Red (Hard/Error) */
-    --danger: 0 84% 60%;
-    --danger-foreground: 0 0% 100%;
-    --danger-light: 0 84% 95%;
+    /* Danger - Electric Red */
+    --danger: 0 72% 51%;
+    --danger-foreground: 0 0% 98%;
+    --danger-light: 0 72% 95%;
 
-    /* Easy Difficulty - Light Green */
-    --easy: 120 60% 50%;
-    --easy-foreground: 0 0% 100%;
-    --easy-light: 120 60% 95%;
+    /* Easy - Bright Green */
+    --easy: 120 61% 50%;
+    --easy-foreground: 240 10% 3.9%;
+    --easy-light: 120 61% 95%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    /* Accent colors */
+    --accent: 259 94% 51%;
+    --accent-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 213 94% 68%;
-    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 213 94% 68%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 259 94% 51%;
 
     --radius: 0.5rem;
 
@@ -78,57 +82,59 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
+
   .dark {
-    /* Dark theme for coding platform */
-    --background: 222 47% 7%;
-    --foreground: 213 31% 91%;
+    /* Enhanced dark theme with vibrant accents */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 222 47% 9%;
-    --card-foreground: 213 31% 91%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 47% 9%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    /* Primary stays bright blue in dark mode */
-    --primary: 213 94% 68%;
-    --primary-foreground: 222 47% 7%;
-    --primary-hover: 213 94% 60%;
+    --primary: 259 94% 51%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 259 94% 45%;
 
-    /* Success - Brighter green for dark mode */
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
     --success: 142 76% 45%;
-    --success-foreground: 222 47% 7%;
+    --success-foreground: 0 0% 98%;
     --success-light: 142 76% 12%;
 
-    /* Warning - Adjusted orange */
-    --warning: 25 95% 60%;
-    --warning-foreground: 222 47% 7%;
-    --warning-light: 25 95% 12%;
+    --warning: 32 95% 50%;
+    --warning-foreground: 0 0% 98%;
+    --warning-light: 32 95% 12%;
 
-    /* Danger - Brighter red */
-    --danger: 0 84% 65%;
-    --danger-foreground: 222 47% 7%;
-    --danger-light: 0 84% 12%;
+    --danger: 0 72% 55%;
+    --danger-foreground: 0 0% 98%;
+    --danger-light: 0 72% 12%;
 
-    /* Easy - Brighter green */
-    --easy: 120 60% 55%;
-    --easy-foreground: 222 47% 7%;
-    --easy-light: 120 60% 12%;
+    --easy: 120 61% 55%;
+    --easy-foreground: 0 0% 98%;
+    --easy-light: 120 61% 12%;
 
-    --secondary: 222 47% 12%;
-    --secondary-foreground: 213 31% 91%;
+    --accent: 259 94% 51%;
+    --accent-foreground: 0 0% 98%;
 
-    --muted: 222 47% 12%;
-    --muted-foreground: 213 13% 65%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 222 47% 12%;
-    --accent-foreground: 213 31% 91%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --destructive: 0 84% 65%;
-    --destructive-foreground: 222 47% 7%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 259 94% 51%;
 
-    --border: 222 47% 15%;
-    --input: 222 47% 15%;
-    --ring: 213 94% 68%;
+    /* Gradients for enhanced visual appeal */
+    --gradient-primary: linear-gradient(135deg, hsl(259 94% 51%) 0%, hsl(305 85% 40%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 45%) 0%, hsl(120 61% 55%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(240 10% 3.9%) 0%, hsl(240 5% 6%) 100%);
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -146,6 +152,46 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-poppins;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Enhanced scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary-hover));
+  }
+
+  /* Glass effect utilities */
+  .glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
   }
 }
