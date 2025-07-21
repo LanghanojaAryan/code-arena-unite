@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ProblemProgressCard } from "@/components/ui/problem-progress-card";
+import { ContestRatingChart } from "@/components/ui/contest-rating-chart";
+import { StreakActivityMap } from "@/components/ui/streak-activity-map";
 import {
   Trophy,
   Code,
@@ -87,6 +89,12 @@ export function StudentDashboard() {
             <p className="text-xs text-muted-foreground">Personal best!</p>
           </CardContent>
         </Card>
+      </div>
+
+      {/* Contest Rating & Activity Streak */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ContestRatingChart />
+        <StreakActivityMap />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
