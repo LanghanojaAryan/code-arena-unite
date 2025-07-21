@@ -9,25 +9,25 @@ All colors MUST be HSL format.
 
 @layer base {
   :root {
-    /* Base colors - Clean and modern */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Base colors - Clean and modern light theme */
+    --background: 0 0% 98%;
+    --foreground: 222 84% 4.9%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
 
-    /* Primary - Electric Purple/Blue gradient */
-    --primary: 259 94% 51%;
+    /* Primary - Brand Blue */
+    --primary: 213 94% 68%;
     --primary-foreground: 0 0% 98%;
-    --primary-hover: 259 94% 45%;
-    --primary-light: 259 94% 91%;
+    --primary-hover: 213 94% 58%;
+    --primary-light: 213 94% 95%;
 
-    /* Secondary - Deep purple */
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    /* Secondary - Light gray */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 84% 4.9%;
 
     /* Success - Vibrant Green */
     --success: 142 76% 36%;
@@ -49,57 +49,57 @@ All colors MUST be HSL format.
     --easy-foreground: 240 10% 3.9%;
     --easy-light: 120 61% 95%;
 
-    /* Accent colors */
-    --accent: 259 94% 51%;
-    --accent-foreground: 0 0% 98%;
+    /* Accent colors - Brand Cyan */
+    --accent: 188 100% 69%;
+    --accent-foreground: 222 84% 4.9%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 259 94% 51%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 213 94% 68%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 0 0% 100%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-foreground: 222 84% 4.9%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary: 213 94% 68%;
 
     --sidebar-primary-foreground: 0 0% 98%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent: 210 40% 96%;
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-accent-foreground: 222 84% 4.9%;
 
-    --sidebar-border: 220 13% 91%;
+    --sidebar-border: 214.3 31.8% 91.4%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 213 94% 68%;
   }
 
 
   .dark {
-    /* Enhanced dark theme with vibrant accents */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Enhanced dark theme with brand colors */
+    --background: 223 47% 11%;
+    --foreground: 213 31% 91%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 223 47% 11%;
+    --card-foreground: 213 31% 91%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 223 47% 11%;
+    --popover-foreground: 213 31% 91%;
 
-    --primary: 259 94% 51%;
+    --primary: 213 94% 68%;
     --primary-foreground: 0 0% 98%;
-    --primary-hover: 259 94% 45%;
+    --primary-hover: 213 94% 58%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
     --success: 142 76% 45%;
     --success-foreground: 0 0% 98%;
@@ -117,32 +117,32 @@ All colors MUST be HSL format.
     --easy-foreground: 0 0% 98%;
     --easy-light: 120 61% 12%;
 
-    --accent: 259 94% 51%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 188 100% 69%;
+    --accent-foreground: 210 40% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 259 94% 51%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 213 94% 68%;
 
     /* Gradients for enhanced visual appeal */
-    --gradient-primary: linear-gradient(135deg, hsl(259 94% 51%) 0%, hsl(305 85% 40%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(213 94% 68%) 0%, hsl(188 100% 69%) 100%);
     --gradient-success: linear-gradient(135deg, hsl(142 76% 45%) 0%, hsl(120 61% 55%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(240 10% 3.9%) 0%, hsl(240 5% 6%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(223 47% 11%) 0%, hsl(217.2 32.6% 17.5%) 100%);
     
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 223 47% 11%;
+    --sidebar-foreground: 213 31% 91%;
+    --sidebar-primary: 213 94% 68%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 213 31% 91%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 213 94% 68%;
   }
 }
 
