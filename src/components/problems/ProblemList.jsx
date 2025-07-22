@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +22,7 @@ import {
 } from "lucide-react";
 
 export function ProblemList() {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
@@ -104,6 +106,10 @@ export function ProblemList() {
       case 'Hard': return 'danger';
       default: return 'secondary';
     }
+  };
+
+  const handleSolveProblem = (problemId) => {
+    navigate(`/code-editor/${problemId}`);
   };
 
   return (
@@ -206,7 +212,10 @@ export function ProblemList() {
                   <div className="flex items-center gap-1">
                     <span>{problem.acceptance}%</span>
                   </div>
-                  <Button size="sm">
+                  <Button 
+                    size="sm"
+                    onClick={() => handleSolveProblem(problem.id)}
+                  >
                     Solve
                   </Button>
                 </div>
