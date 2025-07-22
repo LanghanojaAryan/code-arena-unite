@@ -32,18 +32,6 @@ export function StudentDashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Progress Overview - Professional Circular Progress */}
-      <ProblemProgressCard 
-        solved={510}
-        total={3625}
-        attempting={8}
-        difficulties={{
-          easy: { solved: 162, total: 886 },
-          medium: { solved: 287, total: 1884 },
-          hard: { solved: 61, total: 855 }
-        }}
-      />
-
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
@@ -91,15 +79,31 @@ export function StudentDashboard() {
         </Card>
       </div>
 
-      {/* Contest Rating & Activity Streak */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <ContestRatingChart />
-        <StreakActivityMap />
+      {/* Activity Streak & Contest Rating */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <StreakActivityMap />
+        </div>
+        <div>
+          <ContestRatingChart />
+        </div>
       </div>
+
+      {/* Progress Overview - Professional Circular Progress */}
+      <ProblemProgressCard 
+        solved={510}
+        total={3625}
+        attempting={8}
+        difficulties={{
+          easy: { solved: 162, total: 886 },
+          medium: { solved: 287, total: 1884 },
+          hard: { solved: 61, total: 855 }
+        }}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Activity */}
-        <Card className="glass backdrop-blur-sm">
+        <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="h-5 w-5" />
@@ -138,7 +142,7 @@ export function StudentDashboard() {
         </Card>
 
         {/* Skills Progress */}
-        <Card className="glass backdrop-blur-sm">
+        <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Brain className="h-5 w-5" />

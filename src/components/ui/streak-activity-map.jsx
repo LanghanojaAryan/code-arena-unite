@@ -75,7 +75,7 @@ export function StreakActivityMap() {
   const dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   return (
-    <Card className="glass backdrop-blur-sm">
+    <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Flame className="h-5 w-5" />
