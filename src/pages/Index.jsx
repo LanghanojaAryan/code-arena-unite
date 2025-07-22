@@ -30,7 +30,7 @@ const Index = () => {
         return <ProblemList />;
       case 'contests':
         return (
-          <div className="flex items-center justify-center h-64 glass rounded-xl border border-primary/20">
+          <div className="flex items-center justify-center h-64 solid-card rounded-xl">
             <div className="text-center">
               <Trophy className="h-16 w-16 text-primary mx-auto mb-4 animate-pulse" />
               <p className="text-muted-foreground text-lg">Contests page coming soon...</p>
@@ -40,7 +40,7 @@ const Index = () => {
         );
       case 'classes':
         return (
-          <div className="flex items-center justify-center h-64 glass rounded-xl border border-primary/20">
+          <div className="flex items-center justify-center h-64 solid-card rounded-xl">
             <div className="text-center">
               <BookOpen className="h-16 w-16 text-primary mx-auto mb-4 animate-pulse" />
               <p className="text-muted-foreground text-lg">Classes page coming soon...</p>
@@ -50,7 +50,7 @@ const Index = () => {
         );
       case 'leaderboard':
         return (
-          <div className="flex items-center justify-center h-64 glass rounded-xl border border-primary/20">
+          <div className="flex items-center justify-center h-64 solid-card rounded-xl">
             <div className="text-center">
               <BarChart3 className="h-16 w-16 text-primary mx-auto mb-4 animate-pulse" />
               <p className="text-muted-foreground text-lg">Leaderboard page coming soon...</p>
@@ -60,7 +60,7 @@ const Index = () => {
         );
       case 'exams':
         return (
-          <div className="flex items-center justify-center h-64 glass rounded-xl border border-primary/20">
+          <div className="flex items-center justify-center h-64 solid-card rounded-xl">
             <div className="text-center">
               <FileText className="h-16 w-16 text-primary mx-auto mb-4 animate-pulse" />
               <p className="text-muted-foreground text-lg">Exams page coming soon...</p>
@@ -70,7 +70,7 @@ const Index = () => {
         );
       case 'analytics':
         return (
-          <div className="flex items-center justify-center h-64 glass rounded-xl border border-primary/20">
+          <div className="flex items-center justify-center h-64 solid-card rounded-xl">
             <div className="text-center">
               <BarChart3 className="h-16 w-16 text-primary mx-auto mb-4 animate-pulse" />
               <p className="text-muted-foreground text-lg">Analytics page coming soon...</p>
@@ -87,7 +87,7 @@ const Index = () => {
     <SidebarProvider>
       <div className="min-h-screen bg-background w-full">
         {/* Header with sidebar trigger */}
-        <header className="h-16 flex items-center border-b border-primary/20 bg-card px-4 relative z-50">
+        <header className="h-16 flex items-center border-b border-primary/20 bg-card px-4 fixed top-0 left-0 right-0 z-40">
           <SidebarTrigger className="mr-2" />
           <div className="flex-1">
             <Header 
@@ -104,7 +104,7 @@ const Index = () => {
           <div className="absolute top-1/2 left-1/2 w-32 h-32 rounded-full bg-success/5 blur-2xl animate-pulse" style={{animationDelay: '4s'}}></div>
         </div>
         
-        <div className="flex w-full">
+        <div className="flex w-full pt-16">
           <AppSidebar 
             userRole={userRole}
             activeTab={activeTab}
@@ -112,7 +112,7 @@ const Index = () => {
           />
           
           <main className="flex-1 relative z-10">
-            <div className="container max-w-7xl mx-auto p-6">
+            <div className="container max-w-7xl mx-auto p-4 sm:p-6">
               <div className="animate-fade-in">
                 {renderContent()}
               </div>

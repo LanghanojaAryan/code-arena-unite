@@ -33,7 +33,7 @@ export function StudentDashboard() {
   return (
     <div className="space-y-6">
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="bg-primary/5 border-primary/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Problems Solved</CardTitle>
@@ -109,12 +109,12 @@ export function StudentDashboard() {
           <CardContent>
             <div className="space-y-3">
               {recentSubmissions.map((submission, index) => (
-                <div key={index} className="flex items-center justify-between p-2 rounded-lg bg-muted/50">
+                <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg bg-muted/50 gap-2">
                   <div className="flex flex-col">
                     <span className="font-medium text-sm">{submission.problem}</span>
                     <span className="text-xs text-muted-foreground">{submission.time}</span>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <Badge 
                       variant={submission.difficulty === 'Easy' ? 'secondary' : submission.difficulty === 'Medium' ? 'default' : 'destructive'}
                       className="text-xs"
@@ -189,7 +189,7 @@ export function StudentDashboard() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {upcomingContests.map((contest, index) => (
               <div key={index} className="p-4 rounded-lg border bg-card hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-2">
