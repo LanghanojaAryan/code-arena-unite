@@ -34,7 +34,7 @@ export function StudentDashboard() {
     <div className="space-y-6">
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+        <Card className="bg-primary/5 border-primary/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Problems Solved</CardTitle>
             <Code className="h-4 w-4 text-primary" />
@@ -45,7 +45,7 @@ export function StudentDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-success/5 to-success/10 border-success/20">
+        <Card className="bg-success/5 border-success/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Acceptance Rate</CardTitle>
             <Target className="h-4 w-4 text-success" />
@@ -56,7 +56,7 @@ export function StudentDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-warning/5 to-warning/10 border-warning/20">
+        <Card className="bg-warning/5 border-warning/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Contest Ranking</CardTitle>
             <Trophy className="h-4 w-4 text-warning" />
@@ -67,7 +67,7 @@ export function StudentDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-accent/5 to-accent/10 border-accent/20">
+        <Card className="bg-accent/5 border-accent/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Current Streak</CardTitle>
             <Zap className="h-4 w-4 text-accent" />
@@ -160,7 +160,7 @@ export function StudentDashboard() {
                   </div>
                   <div className="w-full bg-muted rounded-full h-2">
                     <div 
-                      className="h-2 bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500"
+                      className="h-2 bg-primary rounded-full transition-all duration-500"
                       style={{ width: `${skill.progress}%` }}
                     />
                   </div>

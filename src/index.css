@@ -130,11 +130,6 @@ All colors MUST be HSL format.
     --input: 217.2 32.6% 17.5%;
     --ring: 213 94% 68%;
 
-    /* Gradients for enhanced visual appeal */
-    --gradient-primary: linear-gradient(135deg, hsl(213 94% 68%) 0%, hsl(188 100% 69%) 100%);
-    --gradient-success: linear-gradient(135deg, hsl(142 76% 45%) 0%, hsl(120 61% 55%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(223 47% 11%) 0%, hsl(217.2 32.6% 17.5%) 100%);
-    
     --sidebar-background: 223 47% 11%;
     --sidebar-foreground: 213 31% 91%;
     --sidebar-primary: 213 94% 68%;
@@ -176,22 +171,9 @@ All colors MUST be HSL format.
     background: hsl(var(--primary-hover));
   }
 
-  /* Glass effect utilities */
-  .glass {
-    backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.125);
-  }
-
-  .gradient-primary {
-    background: var(--gradient-primary);
-  }
-
-  .gradient-success {
-    background: var(--gradient-success);
-  }
-
-  .gradient-card {
-    background: var(--gradient-card);
+  /* Utility classes for solid theme */
+  .solid-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
   }
 }
