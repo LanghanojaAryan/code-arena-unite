@@ -51,7 +51,7 @@ export function AppSidebar({ userRole, activeTab, onTabChange }) {
   const navItems = userRole === 'student' ? studentNavItems : facultyNavItems;
 
   return (
-    <Sidebar className="border-r border-primary/20 z-30" collapsible="icon">
+    <Sidebar className="border-r border-primary/20" collapsible="icon">
       <SidebarContent className="bg-card">
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>

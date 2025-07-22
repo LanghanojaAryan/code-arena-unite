@@ -104,7 +104,7 @@ const Index = () => {
           <div className="absolute top-1/2 left-1/2 w-32 h-32 rounded-full bg-success/5 blur-2xl animate-pulse" style={{animationDelay: '4s'}}></div>
         </div>
         
-        <div className="flex w-full pt-16">
+        <div className="flex w-full pt-16 min-h-screen">
           <AppSidebar 
             userRole={userRole}
             activeTab={activeTab}
