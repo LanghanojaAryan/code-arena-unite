@@ -2,6 +2,18 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+  useSidebar,
+} from "@/components/ui/sidebar";
+import {
   BarChart3,
   BookOpen,
   Calendar,
@@ -15,7 +27,10 @@ import {
   Sparkles
 } from "lucide-react";
 
-export function Sidebar({ userRole, activeTab, onTabChange, isOpen }) {
+export function AppSidebar({ userRole, activeTab, onTabChange }) {
+  const { state } = useSidebar();
+  const isCollapsed = state === "collapsed";
+  
   const studentNavItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
     { id: 'problems', label: 'Problems', icon: Code },
@@ -36,87 +51,91 @@ export function Sidebar({ userRole, activeTab, onTabChange, isOpen }) {
   const navItems = userRole === 'student' ? studentNavItems : facultyNavItems;
 
   return (
-    <div className={cn(
-      "fixed left-0 top-16 h-[calc(100vh-4rem)] gradient-card border-r border-primary/20 transition-all duration-300 z-40 glass",
-      isOpen ? "w-64" : "w-16"
-    )}>
-      <nav className="p-4 space-y-2">
-        {navItems.map((item) => (
-          <Button
-            key={item.id}
-            variant={activeTab === item.id ? "default" : "ghost"}
-            className={cn(
-              "w-full justify-start gap-3 transition-all hover:bg-primary/10 group",
-              !isOpen && "justify-center px-0",
-              activeTab === item.id && "gradient-primary text-white shadow-lg hover:shadow-xl"
-            )}
-            onClick={() => onTabChange(item.id)}
-          >
-            <item.icon className={cn(
-              "h-5 w-5 transition-transform group-hover:scale-110",
-              activeTab === item.id && "text-white"
-            )} />
-            {isOpen && (
-              <span className="truncate">{item.label}</span>
-            )}
-          </Button>
-        ))}
-        
-        {isOpen && (
-          <div className="pt-4 border-t border-primary/20 mt-4">
-            <Button
-              variant="ghost"
-              className="w-full justify-start gap-3 hover:bg-primary/10 group"
-            >
-              <Settings className="h-5 w-5 group-hover:scale-110 transition-transform" />
-              <span className="truncate">Settings</span>
-            </Button>
+    <Sidebar className="border-r border-primary/20" collapsible="icon">
+      <SidebarContent className="bg-card">
+        <SidebarGroup>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {navItems.map((item) => (
+                <SidebarMenuItem key={item.id}>
+                  <SidebarMenuButton
+                    onClick={() => onTabChange(item.id)}
+                    isActive={activeTab === item.id}
+                    className={cn(
+                      "transition-all hover:bg-primary/10 group",
+                      activeTab === item.id && "bg-primary text-primary-foreground hover:bg-primary/90"
+                    )}
+                  >
+                    <item.icon className={cn(
+                      "h-5 w-5 transition-transform group-hover:scale-110",
+                      activeTab === item.id && "text-primary-foreground"
+                    )} />
+                    {!isCollapsed && <span>{item.label}</span>}
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Settings</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton className="hover:bg-primary/10">
+                  <Settings className="h-5 w-5" />
+                  {!isCollapsed && <span>Settings</span>}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Progress Stats - Only show when expanded */}
+        {!isCollapsed && (
+          <div className="mt-auto p-4">
+            <div className="p-4 bg-muted/50 rounded-xl border border-primary/20">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="p-1.5 rounded-full bg-primary/20">
+                  <Zap className="h-4 w-4 text-primary" />
+                </div>
+                <span className="text-sm font-semibold">Progress</span>
+                <Sparkles className="h-3 w-3 text-primary ml-auto" />
+              </div>
+              {userRole === 'student' ? (
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted-foreground">Problems Solved</span>
+                    <span className="font-bold text-primary">47/200</span>
+                  </div>
+                  <div className="w-full bg-secondary/50 rounded-full h-2 overflow-hidden">
+                    <div className="bg-primary h-2 rounded-full transition-all duration-500" style={{width: '23.5%'}}></div>
+                  </div>
+                  <div className="text-xs text-center text-muted-foreground">
+                    🔥 12-day streak!
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-muted-foreground">Active Contests</span>
+                    <Badge variant="secondary" className="text-xs">3</Badge>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-muted-foreground">Total Students</span>
+                    <Badge variant="secondary" className="text-xs">156</Badge>
+                  </div>
+                  <div className="text-xs text-center text-muted-foreground">
+                    📊 87% active rate
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
-      </nav>
-      
-      {/* Enhanced Quick Stats */}
-      {isOpen && (
-        <div className="absolute bottom-4 left-4 right-4 space-y-3">
-          <div className="p-4 glass rounded-xl border border-primary/20">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 rounded-full bg-primary/20">
-                <Zap className="h-4 w-4 text-primary" />
-              </div>
-              <span className="text-sm font-semibold">Progress</span>
-              <Sparkles className="h-3 w-3 text-primary ml-auto" />
-            </div>
-            {userRole === 'student' ? (
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Problems Solved</span>
-                  <span className="font-bold text-primary">47/200</span>
-                </div>
-                <div className="w-full bg-secondary/50 rounded-full h-2 overflow-hidden">
-                  <div className="gradient-primary h-2 rounded-full transition-all duration-500" style={{width: '23.5%'}}></div>
-                </div>
-                <div className="text-xs text-center text-muted-foreground">
-                  🔥 12-day streak!
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground">Active Contests</span>
-                  <Badge variant="secondary" className="text-xs gradient-primary text-white">3</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground">Total Students</span>
-                  <Badge variant="secondary" className="text-xs bg-success/20 text-success border-success/30">156</Badge>
-                </div>
-                <div className="text-xs text-center text-muted-foreground">
-                  📊 87% active rate
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
+      </SidebarContent>
+    </Sidebar>
   );
 }

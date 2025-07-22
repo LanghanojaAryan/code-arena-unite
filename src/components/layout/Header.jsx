@@ -21,7 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function Header({ userRole, onRoleSwitch, onMenuToggle }) {
+export function Header({ userRole, onRoleSwitch }) {
   const [darkMode, setDarkMode] = useState(true);
 
   const toggleDarkMode = () => {
@@ -30,37 +30,24 @@ export function Header({ userRole, onRoleSwitch, onMenuToggle }) {
   };
 
   return (
-    <header className="border-b glass sticky top-0 z-50 backdrop-blur-lg">
-      <div className="container flex items-center justify-between h-16 px-4">
-        {/* Left side */}
-        <div className="flex items-center gap-4">
-          {onMenuToggle && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onMenuToggle}
-              className="md:hidden hover:bg-primary/10"
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          )}
-          
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <Code2 className="h-8 w-8 text-primary animate-pulse" />
-              <Sparkles className="h-3 w-3 text-primary absolute -top-1 -right-1" />
-            </div>
-            <div>
-              <span className="font-bold text-xl bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">
-                CodeArena
-              </span>
-              <p className="text-xs text-muted-foreground -mt-1">Competitive Programming</p>
-            </div>
+    <div className="flex items-center justify-between w-full">
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <Code2 className="h-8 w-8 text-primary animate-pulse" />
+            <Sparkles className="h-3 w-3 text-primary absolute -top-1 -right-1" />
+          </div>
+          <div>
+            <span className="font-bold text-xl bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">
+              CodeArena
+            </span>
+            <p className="text-xs text-muted-foreground -mt-1">Competitive Programming</p>
           </div>
         </div>
+      </div>
 
-        {/* Right side */}
-        <div className="flex items-center gap-4">
+      {/* Right side */}
+      <div className="flex items-center gap-4">
           {/* Role Switch with enhanced styling */}
           <div className="flex items-center gap-2 p-1 bg-muted/50 rounded-full">
             <Badge 
@@ -145,6 +132,6 @@ export function Header({ userRole, onRoleSwitch, onMenuToggle }) {
           </DropdownMenu>
         </div>
       </div>
-    </header>
+    </div>
   );
 }

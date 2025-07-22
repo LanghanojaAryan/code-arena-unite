@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Header } from "@/components/layout/Header";
-import { Sidebar } from "@/components/layout/Sidebar";
+import { AppSidebar } from "@/components/layout/Sidebar";
 import { StudentDashboard } from "@/components/dashboard/StudentDashboard";
 import { FacultyDashboard } from "@/components/dashboard/FacultyDashboard";
 import { ProblemList } from "@/components/problems/ProblemList";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { 
   Trophy, 
@@ -15,7 +16,6 @@ import {
 const Index = () => {
   const [userRole, setUserRole] = useState('student');
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleRoleSwitch = (role) => {
     setUserRole(role);
@@ -84,40 +84,43 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-purple-500/5 blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 w-32 h-32 rounded-full bg-success/5 blur-2xl animate-pulse" style={{animationDelay: '4s'}}></div>
-      </div>
-      
-      <Header 
-        userRole={userRole} 
-        onRoleSwitch={handleRoleSwitch}
-        onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
-      />
-      
-      <div className="flex relative">
-        <Sidebar 
-          userRole={userRole}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          isOpen={sidebarOpen}
-        />
-        
-        <main className={cn(
-          "flex-1 transition-all duration-300 relative z-10",
-          sidebarOpen ? "ml-64" : "ml-16"
-        )}>
-          <div className="container max-w-7xl mx-auto p-6">
-            <div className="animate-fade-in">
-              {renderContent()}
-            </div>
+    <SidebarProvider>
+      <div className="min-h-screen bg-background w-full">
+        {/* Header with sidebar trigger */}
+        <header className="h-16 flex items-center border-b border-primary/20 bg-card px-4 relative z-50">
+          <SidebarTrigger className="mr-2" />
+          <div className="flex-1">
+            <Header 
+              userRole={userRole} 
+              onRoleSwitch={handleRoleSwitch}
+            />
           </div>
-        </main>
+        </header>
+
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-purple-500/5 blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 left-1/2 w-32 h-32 rounded-full bg-success/5 blur-2xl animate-pulse" style={{animationDelay: '4s'}}></div>
+        </div>
+        
+        <div className="flex w-full">
+          <AppSidebar 
+            userRole={userRole}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
+          
+          <main className="flex-1 relative z-10">
+            <div className="container max-w-7xl mx-auto p-6">
+              <div className="animate-fade-in">
+                {renderContent()}
+              </div>
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
+    </SidebarProvider>
   );
 };
 
