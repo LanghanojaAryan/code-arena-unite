@@ -6,6 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import Editor from "@monaco-editor/react";
 import { 
   ArrowLeft, 
@@ -15,19 +22,50 @@ import {
   Clock,
   Target,
   Code,
-  Terminal
+  Terminal,
+  ChevronDown
 } from "lucide-react";
 import { toast } from "sonner";
 
 export function CodeEditor() {
   const { problemId } = useParams();
   const navigate = useNavigate();
-  const [code, setCode] = useState(`function twoSum(nums, target) {
+  const [language, setLanguage] = useState("javascript");
+  const [code, setCode] = useState({
+    javascript: `function twoSum(nums, target) {
     // Write your solution here
     
-}`);
+}`,
+    python: `def two_sum(nums, target):
+    # Write your solution here
+    pass`,
+    java: `class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        // Write your solution here
+        
+    }
+}`,
+    cpp: `class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // Write your solution here
+        
+    }
+};`
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [testResults, setTestResults] = useState(null);
+
+  const languages = [
+    { value: "javascript", label: "JavaScript", monaco: "javascript" },
+    { value: "python", label: "Python", monaco: "python" },
+    { value: "java", label: "Java", monaco: "java" },
+    { value: "cpp", label: "C++", monaco: "cpp" }
+  ];
+
+  const getCurrentLanguageConfig = () => {
+    return languages.find(lang => lang.value === language) || languages[0];
+  };
 
   // Mock problem data - in real app, this would come from API
   const problem = {
@@ -111,10 +149,10 @@ You can return the answer in any order.`,
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background w-full">
       {/* Header */}
-      <div className="border-b border-primary/20 bg-card px-4 py-3">
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
+      <div className="border-b border-primary/20 bg-card px-6 py-3 w-full">
+        <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
@@ -132,7 +170,23 @@ You can return the answer in any order.`,
               </Badge>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <Select value={language} onValueChange={setLanguage}>
+              <SelectTrigger className="w-32 bg-background border-primary/20 hover:bg-muted/50 z-50">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="bg-background border-primary/20 shadow-lg z-50">
+                {languages.map((lang) => (
+                  <SelectItem 
+                    key={lang.value} 
+                    value={lang.value}
+                    className="hover:bg-muted focus:bg-muted"
+                  >
+                    {lang.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Button
               variant="outline"
               onClick={handleRunCode}
@@ -155,8 +209,8 @@ You can return the answer in any order.`,
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-140px)]">
+      <div className="w-full p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-140px)] w-full">
           {/* Left Panel - Problem Description */}
           <Card className="flex flex-col">
             <CardHeader>
@@ -245,9 +299,13 @@ You can return the answer in any order.`,
                 <div className="h-[400px] border-t">
                   <Editor
                     height="100%"
-                    defaultLanguage="javascript"
-                    value={code}
-                    onChange={(value) => setCode(value || "")}
+                    defaultLanguage={getCurrentLanguageConfig().monaco}
+                    language={getCurrentLanguageConfig().monaco}
+                    value={code[language]}
+                    onChange={(value) => setCode(prev => ({
+                      ...prev,
+                      [language]: value || ""
+                    }))}
                     theme="vs-dark"
                     options={{
                       minimap: { enabled: false },
