@@ -79,27 +79,23 @@ export function StudentDashboard() {
         </Card>
       </div>
 
-      {/* Activity Streak & Contest Rating */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <StreakActivityMap />
-        </div>
-        <div>
-          <ContestRatingChart />
-        </div>
+      {/* Problem Solving Progress & Contest Rating */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ProblemProgressCard 
+          solved={510}
+          total={3625}
+          attempting={8}
+          difficulties={{
+            easy: { solved: 162, total: 886 },
+            medium: { solved: 287, total: 1884 },
+            hard: { solved: 61, total: 855 }
+          }}
+        />
+        <ContestRatingChart />
       </div>
 
-      {/* Progress Overview - Professional Circular Progress */}
-      <ProblemProgressCard 
-        solved={510}
-        total={3625}
-        attempting={8}
-        difficulties={{
-          easy: { solved: 162, total: 886 },
-          medium: { solved: 287, total: 1884 },
-          hard: { solved: 61, total: 855 }
-        }}
-      />
+      {/* Problem Solving Activity - Full Width */}
+      <StreakActivityMap />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Activity */}
